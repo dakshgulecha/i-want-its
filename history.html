@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>I Want It: History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="brand">I Want It</span>
+    <div class="links">
+      <a href="index.html">Active</a>
+      <a href="history.html" class="active">History</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="card">
+      <h2>History</h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Owner</th>
+              <th>Created</th>
+              <th>Used</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty" hidden>Nothing has been used yet.</p>
+      <p id="error" class="error"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="history.js"></script>
+</body>
+</html>

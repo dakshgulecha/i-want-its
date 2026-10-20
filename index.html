@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>I Want It</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="brand">I Want It</span>
+    <div class="links">
+      <a href="index.html" class="active">Active</a>
+      <a href="history.html">History</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="card">
+      <h2>New</h2>
+      <form id="create-form" class="row">
+        <input id="device-type" list="device-types" placeholder="Device type" autocomplete="off" required>
+        <datalist id="device-types"></datalist>
+        <select id="owner" required></select>
+        <button type="submit" class="primary">Add</button>
+      </form>
+      <button id="add-user-btn" type="button" class="link">Add user</button>
+      <p id="form-error" class="error"></p>
+    </section>
+
+    <section class="card">
+      <h2>Active</h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Owner</th>
+              <th>Created</th>
+              <th class="actions"></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty" hidden>Nothing here yet.</p>
+    </section>
+  </main>
+
+  <dialog id="user-dialog">
+    <form id="user-form">
+      <h2>Add user</h2>
+      <input id="user-name" placeholder="Name" autocomplete="off" required>
+      <input id="user-password" type="password" placeholder="Password" autocomplete="new-password" required>
+      <p id="user-error" class="error"></p>
+      <div class="buttons">
+        <button type="button" onclick="this.closest('dialog').close()">Cancel</button>
+        <button type="submit" class="primary">Add</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="use-dialog">
+    <form id="use-form">
+      <h2 id="use-title"></h2>
+      <p id="use-sub" class="sub"></p>
+      <input id="use-password" type="password" placeholder="Password" autocomplete="off" required>
+      <p id="use-error" class="error"></p>
+      <div class="buttons">
+        <button type="button" onclick="this.closest('dialog').close()">Cancel</button>
+        <button type="submit" class="primary">Use</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
