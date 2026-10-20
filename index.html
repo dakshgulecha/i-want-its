@@ -61,6 +61,19 @@
     </form>
   </dialog>
 
+  <dialog id="confirm-dialog">
+    <form id="confirm-form">
+      <h2>Confirm</h2>
+      <p class="sub">Every user must enter their password to add this.</p>
+      <div id="confirm-fields" class="fields"></div>
+      <p id="confirm-error" class="error"></p>
+      <div class="buttons">
+        <button type="button" onclick="this.closest('dialog').close()">Cancel</button>
+        <button type="submit" class="primary">Add</button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog id="use-dialog">
     <form id="use-form">
       <h2 id="use-title"></h2>

@@ -194,7 +194,8 @@ dialog::backdrop {
   backdrop-filter: blur(6px);
 }
 
-dialog form {
+dialog form,
+.fields {
   display: grid;
   gap: 12px;
 }

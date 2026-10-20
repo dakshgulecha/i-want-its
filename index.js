@@ -1,6 +1,8 @@
 let pendingId = null;
+let allUsers = [];
 
 function renderUsers(users) {
+  allUsers = users;
   const current = $("owner").value;
   const placeholder = new Option("Owner", "", true, true);
   placeholder.disabled = true;
@@ -55,15 +57,44 @@ function openUse(row) {
   $("use-dialog").showModal();
 }
 
-$("create-form").onsubmit = async (e) => {
+function openConfirm() {
+  $("confirm-fields").replaceChildren(
+    ...allUsers.map((u) => {
+      const input = document.createElement("input");
+      input.type = "password";
+      input.placeholder = `${u.name}'s password`;
+      input.autocomplete = "new-password";
+      input.required = true;
+      input.dataset.id = u.id;
+      return input;
+    })
+  );
+  showError("confirm-error", "");
+  $("confirm-dialog").showModal();
+}
+
+$("create-form").onsubmit = (e) => {
   e.preventDefault();
   showError("form-error", "");
+  openConfirm();
+};
+
+$("confirm-form").onsubmit = async (e) => {
+  e.preventDefault();
+  const passwords = Object.fromEntries(
+    [...$("confirm-fields").children].map((input) => [input.dataset.id, input.value])
+  );
   try {
-    await call("create_iou", { p_device_type: $("device-type").value, p_owner_id: $("owner").value });
+    await call("create_iou", {
+      p_device_type: $("device-type").value,
+      p_owner_id: $("owner").value,
+      p_passwords: passwords
+    });
+    $("confirm-dialog").close();
     $("device-type").value = "";
     await load();
   } catch (err) {
-    showError("form-error", err.message);
+    showError("confirm-error", err.message);
   }
 };
 
